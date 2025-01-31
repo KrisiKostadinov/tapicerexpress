@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { MenuIcon, XIcon } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,9 @@ type NavbarItems = {
 
 export default function NavbarMobileItems({ navbarItems }: NavbarItems) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => pathname === href;
 
   return (
     <>
@@ -49,7 +53,10 @@ export default function NavbarMobileItems({ navbarItems }: NavbarItems) {
               <NavbarItem
                 item={navbarItem}
                 key={index}
-                classes="w-full hover:bg-gray-100 cursor-pointer"
+                classes={cn(
+                  "w-full hover:bg-gray-100 cursor-pointer",
+                  isActive(navbarItem.href) ? "bg-gray-100" : "",
+                )}
                 onClick={() => setIsOpen(false)}
               />
             ))}
