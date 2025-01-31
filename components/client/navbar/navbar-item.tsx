@@ -12,14 +12,16 @@ type NavbarItemProps = {
   buttonClasses?: string;
 } & ComponentProps<"li">;
 
-export function NavbarItem({ item, classes, buttonClasses, ...props }: NavbarItemProps) {
+export function NavbarItem({
+  item,
+  classes,
+  ...props
+}: NavbarItemProps) {
   return (
-    <li className={classes} {...props}>
-      <Link href={item.href}>
-        <Button variant={"link"}>
-          {item.name}
-        </Button>
-      </Link>
-    </li>
+    <Link href={item.href}>
+      <li className={classes} {...props}>
+        <Button variant={"link"}>{item.name}</Button>
+      </li>
+    </Link>
   );
 }

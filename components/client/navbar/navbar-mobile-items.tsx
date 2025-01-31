@@ -33,7 +33,7 @@ export default function NavbarMobileItems({ navbarItems }: NavbarItems) {
       )}
       <nav
         className={cn(
-          "fixed right-0 top-0 sm:w-4/12 w-8/12 h-screen bg-white border shadow transition-transform duration-500",
+          "fixed right-0 top-0 sm:w-4/12 w-8/12 h-screen bg-white border shadow transition-transform duration-500 z-40",
           !isOpen && "translate-x-full"
         )}
       >

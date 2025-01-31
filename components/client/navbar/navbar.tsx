@@ -7,7 +7,7 @@ export default async function Navbar() {
   const navbarItems = await getNavbarItems();
 
   return (
-    <div className="h-16 border-b w-full">
+    <div className="bg-white h-16 border-b w-full sticky top-0 z-40">
       <div className="container mx-auto h-full flex justify-between items-center max-md:px-5">
         <Logo />
         <div className="hidden md:block">
