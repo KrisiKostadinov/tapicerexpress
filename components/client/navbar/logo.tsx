@@ -13,9 +13,9 @@ export default function Logo() {
       <Image
         src={LOGO_IMAGE || `/logo.png`}
         alt={env.WEBSITE_TITLE || "Website Logo"}
-        width={160}
-        height={80}
-        className="w-[80px] h-[40px] object-contain"
+        width={280}
+        height={140}
+        className="w-[160px] h-[320px] object-contain"
         priority
       />
     </Link>
