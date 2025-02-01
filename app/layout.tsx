@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
+import { Suspense } from "react";
+
 import "./globals.css";
 import Navbar from "@/components/client/navbar/navbar";
 import Footer from "@/components/client/footer/footer";
@@ -19,9 +22,12 @@ export default function RootLayout({
   return (
     <html lang="bg">
       <body className="w-full h-screen bg-gray-100">
-        <Navbar />
-        {children}
-        <Footer />
+        <Suspense>
+          <ToastContainer position="top-center" />
+          <Navbar />
+          {children}
+          <Footer />
+        </Suspense>
       </body>
     </html>
   );

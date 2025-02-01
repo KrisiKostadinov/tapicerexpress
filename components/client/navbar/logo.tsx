@@ -15,7 +15,7 @@ export default function Logo() {
         alt={env.WEBSITE_TITLE || "Website Logo"}
         width={280}
         height={140}
-        className="w-[160px] h-[320px] object-contain"
+        className="w-[160px] h-[80px] object-contain"
         priority
       />
     </Link>
