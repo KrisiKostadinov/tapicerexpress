@@ -21,4 +21,5 @@ export const env = {
   WEBSITE_TITLE: String(process.env.WEBSITE_TITLE),
 }
 
-export const LOGO_IMAGE = "/logo.png";
+export const LOGO_IMAGE = "/light.svg";
+export const LOGO_DARK_IMAGE = "/dark.svg";

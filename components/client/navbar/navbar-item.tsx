@@ -8,19 +8,20 @@ import { Button } from "@/components/ui/button";
 
 type NavbarItemProps = {
   item: NavbarItem;
-  classes?: string;
-  buttonClasses?: string;
+  listItemClassNames?: string;
+  buttonClassNames?: string;
 } & ComponentProps<"li">;
 
 export function NavbarItem({
   item,
-  classes,
+  listItemClassNames,
+  buttonClassNames,
   ...props
 }: NavbarItemProps) {
   return (
     <Link href={item.href}>
-      <li className={classes} {...props}>
-        <Button variant={"link"}>{item.name}</Button>
+      <li className={listItemClassNames} {...props}>
+        <Button className={buttonClassNames} variant={"link"}>{item.name}</Button>
       </li>
     </Link>
   );

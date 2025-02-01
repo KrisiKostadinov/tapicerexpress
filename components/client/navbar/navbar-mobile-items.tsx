@@ -53,9 +53,9 @@ export default function NavbarMobileItems({ navbarItems }: NavbarItems) {
               <NavbarItem
                 item={navbarItem}
                 key={index}
-                classes={cn(
-                  "w-full hover:bg-gray-100 cursor-pointer",
-                  isActive(navbarItem.href) ? "bg-gray-100" : "",
+                listItemClassNames={cn(
+                  "w-full hover:bg-primary hover:text-white cursor-pointer",
+                  isActive(navbarItem.href) ? "text-white bg-primary" : "",
                 )}
                 onClick={() => setIsOpen(false)}
               />

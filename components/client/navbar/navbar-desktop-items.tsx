@@ -22,7 +22,8 @@ export default function NavbarDesktopItems({ navbarItems }: NavbarItemsProps) {
             <NavbarItem
               key={index}
               item={navbarItem}
-              className={cn("rounded", isActive(navbarItem.href) ? "bg-gray-100" : "")}
+              className={cn("rounded", isActive(navbarItem.href) && "bg-primary")}
+              buttonClassNames={cn("py-6 px-8 text-xl", isActive(navbarItem.href) && "text-white")}
             />
           ))
         ) : (
