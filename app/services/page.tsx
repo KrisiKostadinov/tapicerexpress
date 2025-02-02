@@ -1,10 +1,10 @@
-import { getServices } from "@/app/services/data";
-import { Button } from "@/components/ui/button";
-import { CheckIcon, ChevronRight, PhoneIcon } from "lucide-react";
+import { getServices } from "@/app/dashboard/services/data";
+import { PhoneIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function Services() {
-  const services = await getServices();
+  const services = await getServices("asc");
 
   return (
     <main className="min-h-screen container mx-auto py-10 max-sm:px-5">
@@ -25,7 +25,13 @@ export default async function Services() {
               <ul className="flex flex-col gap-2">
                 {serivce.steps.map((step, index) => (
                   <li key={index} className="flex items-center gap-2">
-                    <CheckIcon className="text-secondary" />
+                    <Image
+                      src={"/check-mark.png"}
+                      alt="Check mark"
+                      width={40}
+                      height={40}
+                      priority
+                    />
                     <span>{step}</span>
                   </li>
                 ))}
