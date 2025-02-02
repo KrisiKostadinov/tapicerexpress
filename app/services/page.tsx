@@ -1,7 +1,8 @@
-import { getServices } from "@/app/dashboard/services/data";
 import { PhoneIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+import { getServices } from "@/app/dashboard/services/data";
 
 export default async function Services() {
   const services = await getServices("asc");
