@@ -60,7 +60,7 @@ export default function CompanyData({ companyData }: CompanyDataProps) {
         city: companyData.city || "",
       });
     }
-  }, []);
+  }, [companyData, form]);
 
   const onSubmit = async (data: FormSchemaProps) => {
     try {

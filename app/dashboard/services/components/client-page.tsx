@@ -18,7 +18,7 @@ export default function ClientPage({ children }: ClientPageProps) {
     <SaveServiceContext.Provider
       value={{ isOpen, toggleOpen, service, setService }}
     >
-      <div className="container mx-auto mt-5">{children}</div>
+      <div className="container mx-auto mt-5 max-md:px-5">{children}</div>
     </SaveServiceContext.Provider>
   );
 }

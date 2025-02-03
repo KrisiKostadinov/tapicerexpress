@@ -1,7 +1,6 @@
 import { LocateIcon, MailIcon, PhoneIcon } from "lucide-react";
 
 import { getContactsInfo } from "@/app/contacts/data";
-import { Button } from "@/components/ui/button";
 
 export default async function Contacts() {
   const contactsInfo = await getContactsInfo();

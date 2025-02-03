@@ -40,18 +40,14 @@ export default function ServicesListing({ services }: ServicesListingProps) {
       return;
 
     try {
-      const result = await deleteService(id);
-
-      if (result.error) {
-        toast.error(result.error);
-        return;
-      }
-
-      toast.success(result.message);
+      await deleteService(id);
+      toast.success("Услугата е премахната");
       router.refresh();
     } catch (error) {
       toast.error("Нещо се обърка");
       console.error("Грешка при запазване:", error);
+    } finally {
+      setService(undefined);
     }
   };
 
@@ -61,16 +57,22 @@ export default function ServicesListing({ services }: ServicesListingProps) {
         <Table className="bg-white border rounded-md shadow text-lg">
           <TableHeader>
             <TableRow>
-              <TableHead className="border">Услуга</TableHead>
-              <TableHead className="border">Описание</TableHead>
-              <TableHead className="border text-right">Опции</TableHead>
+              <TableHead className="border font-semibold text-black">Услуга</TableHead>
+              <TableHead className="border font-semibold text-black">Описание</TableHead>
+              <TableHead className="border text-right font-semibold text-black">Опции</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {services.map((service) => (
               <TableRow key={service.id}>
                 <TableCell className="border">{service.title}</TableCell>
-                <TableCell className="border line-clamp-4">{service.description}</TableCell>
+                <TableCell className="line-clamp-4">
+                  {service.description ? (
+                    service.description
+                  ) : (
+                    <div className="text-muted-foreground">Няма описание</div>
+                  )}
+                </TableCell>
                 <TableCell align="right" className="border">
                   <Popover>
                     <PopoverTrigger asChild>

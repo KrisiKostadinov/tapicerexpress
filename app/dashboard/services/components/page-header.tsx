@@ -1,16 +1,16 @@
 "use client";
 
-import { useContext } from "react";
 import { PlusIcon } from "lucide-react";
 
-import { SaveServiceContext } from "@/app/dashboard/services/context";
 import { Button } from "@/components/ui/button";
+import { useSaveService } from "../hooks/use-save-service";
 
 export default function PageHeader() {
-  const saveServiceContext = useContext(SaveServiceContext);
+  const { setService, toggleOpen } = useSaveService();
 
   const handleOpen = () => {
-    saveServiceContext?.toggleOpen();
+    setService(undefined);
+    toggleOpen();
   }
 
   return (

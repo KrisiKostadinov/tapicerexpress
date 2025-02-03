@@ -23,7 +23,7 @@ import {
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { createService, updateService } from "@/app/dashboard/services/data";
-import { useSaveService } from "../hooks/use-save-service";
+import { useSaveService } from "@/app/dashboard/services/hooks/use-save-service";
 
 export const formSchema = z.object({
   title: z
@@ -38,7 +38,7 @@ export type FormSchemaProps = z.infer<typeof formSchema>;
 
 export default function SaveService() {
   const router = useRouter();
-  const { service, isOpen, toggleOpen } = useSaveService();
+  const { service, isOpen, toggleOpen, setService } = useSaveService();
 
   const form = useForm<FormSchemaProps>({
     resolver: zodResolver(formSchema),
@@ -56,12 +56,20 @@ export default function SaveService() {
         description: service.description || "",
         endMessage: service.endMessage || "",
       });
+    } else {
+      form.reset({
+        title: "",
+        description: "",
+        endMessage: "",
+      });
     }
   }, [service, form]);
 
   useEffect(() => {
     if (service?.steps) {
       setSteps(service.steps);
+    } else {
+      setSteps(["", "", ""]);
     }
   }, [service]);
 
@@ -83,25 +91,21 @@ export default function SaveService() {
 
   const onSubmit = async (data: FormSchemaProps) => {
     try {
-      let result;
-
       if (service?.id) {
-        result = await updateService(service?.id, data, steps);
+        await updateService(service?.id, data, steps);
+        toast.success("Услугата е променена");
       } else {
-        result = await createService(data, steps);
-      }
-
-      if (!result.message) {
-        toast.error("Нещо се обърка");
-        return;
+        await createService(data, steps);
+        toast.success("Услугата е добавена");
       }
 
       toggleOpen();
-      toast.success(result.message);
       router.refresh();
     } catch (error) {
       toast.error("Нещо се обърка");
       console.error("Грешка при запазване:", error);
+    } finally {
+      setService(undefined);
     }
   };
 

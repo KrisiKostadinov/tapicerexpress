@@ -1,5 +1,4 @@
 import { getSettings } from "@/app/dashboard/settings/data";
-import { formatDate } from "@/lib/utils";
 
 const heading = "font-semibold text-2xl";
 const ulList = "ml-10 list-decimal flex flex-col gap-2";
