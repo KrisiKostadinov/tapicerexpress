@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { z } from "zod";
 
 import type { CompanyData, Settings } from "@prisma/client";
-import { updateSettings } from "@/app/dashboard/settings/data";
+import { updateCompany } from "@/app/dashboard/settings/data";
 import {
   Form,
   FormControl,
@@ -31,6 +31,7 @@ export const formSchema = z.object({
   emailAddress: z.string(),
   phoneNumber: z.string(),
   physicalAddress: z.string(),
+  city: z.string(),
 });
 
 export type FormSchemaProps = z.infer<typeof formSchema>;
@@ -45,6 +46,7 @@ export default function CompanyData({ companyData }: CompanyDataProps) {
       emailAddress: "",
       phoneNumber: "",
       physicalAddress: "",
+      city: "",
     },
   });
 
@@ -55,20 +57,15 @@ export default function CompanyData({ companyData }: CompanyDataProps) {
         emailAddress: companyData.emailAddress,
         phoneNumber: companyData.phoneNumber,
         physicalAddress: companyData.physicalAddress,
+        city: companyData.city || "",
       });
     }
   }, []);
 
   const onSubmit = async (data: FormSchemaProps) => {
     try {
-      const result = await updateSettings(data);
-
-      if (!result.message) {
-        toast.error("Нещо се обърка");
-        return;
-      }
-
-      toast.success(result.message);
+      await updateCompany(data);
+      toast.success("Промените са направени");
       router.refresh();
     } catch (error) {
       toast.error("Нещо се обърка");
@@ -150,6 +147,26 @@ export default function CompanyData({ companyData }: CompanyDataProps) {
                   <Input
                     type="text"
                     placeholder="Въведете физически адрес"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription className="text-muted-foreground">
+                  По избор
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="city"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Град</FormLabel>
+                <FormControl>
+                  <Input
+                    type="text"
+                    placeholder="Въведете град"
                     {...field}
                   />
                 </FormControl>

@@ -1,14 +1,12 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { env, LOGO_IMAGE } from "@/constants";
 
 export default function Logo() {
   return (
-    <Link
+    <a
       href={"/"}
       aria-label={env.WEBSITE_TITLE || "Начална страница"}
-      prefetch={false}
     >
       <Image
         src={LOGO_IMAGE || `/logo.png`}
@@ -18,6 +16,6 @@ export default function Logo() {
         className="w-[160px] h-[80px] object-contain"
         priority
       />
-    </Link>
+    </a>
   );
 }

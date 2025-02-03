@@ -9,7 +9,7 @@ export default async function Contacts() {
   return (
     <main className="bg-white min-h-screen py-10 space-y-10 max-md:px-5">
       <h1 className="text-3xl font-semibold text-center">
-        {contactsInfo.title}
+        {contactsInfo.websiteTitle}
       </h1>
       <section className="grid sm:grid-cols-2 md:grid-cols-3 gap-10 container mx-auto">
         <article
@@ -56,7 +56,7 @@ export default async function Contacts() {
           <h2 id="address-title" className="text-2xl font-semibold mb-5">
             Адрес
           </h2>
-          <p className="text-xl">{contactsInfo.address}</p>
+          <p className="text-xl">{contactsInfo.physicalAddress}</p>
         </article>
       </section>
       <iframe
@@ -64,19 +64,8 @@ export default async function Contacts() {
         width="100%"
         height="600"
         loading="lazy"
+        id="google-map"
       ></iframe>
-      <div className="flex justify-center">
-        <a
-          href={contactsInfo.mapUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Отваряне на картата в Google Maps"
-          aria-label="Отваряне на картата в Google Maps"
-          className="block"
-        >
-          <Button size={"lg"}>Отваряне на картата в Google Maps</Button>
-        </a>
-      </div>
     </main>
   );
 }

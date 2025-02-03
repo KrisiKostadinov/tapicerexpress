@@ -123,6 +123,7 @@ model CompanyData {
   emailAddress    String    @map("email_address")
   phoneNumber     String    @map("phone_number")
   physicalAddress String    @map("physical_address")
+  city            String?   @map("city")
   websiteTitle    String    @map("website_title")
   settings        Settings?
 

@@ -3,8 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { LOGO_DARK_IMAGE } from "@/constants";
+import { getContactsInfo } from "@/app/contacts/data";
 
-export default function Footer() {
+export default async function Footer() {
+  const contactsInfo = await getContactsInfo();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -86,7 +88,7 @@ export default function Footer() {
             <h2 className="text-white mb-5 text-2xl font-semibold">Правни</h2>
             <ul className="text-white flex flex-col gap-5">
               <li>
-                <Link href={"/terms"} className="flex gap-2">
+                <Link href={"/cookie-policy"} className="flex gap-2">
                   <ChevronRight />
                   <span>Политика на бисквитките</span>
                 </Link>
@@ -123,13 +125,19 @@ export default function Footer() {
               <li>
                 <a href="#" className="flex gap-2">
                   <Map />
-                  <span>Дупница</span>
+                  <span>{contactsInfo.city}</span>
                 </a>
               </li>
               <li>
                 <a href="#" className="flex gap-2">
                   <MapPin />
-                  <span>ул. Благодарност 9А</span>
+                  <span>{contactsInfo.physicalAddress}</span>
+                </a>
+              </li>
+              <li>
+                <a href="/contacts#google-map" className="flex gap-2">
+                  <ChevronRight />
+                  <span>Google Map</span>
                 </a>
               </li>
             </ul>

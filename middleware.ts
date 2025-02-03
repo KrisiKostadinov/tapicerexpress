@@ -5,6 +5,9 @@ const guestRoutes = ["/login", "/register"];
 const loggedInRoutes = ["/dashboard"];
 
 export default async function authMiddleware(request: NextRequest) {
+  const headers = new Headers(request.headers);
+  headers.set("x-current-path", request.nextUrl.pathname);
+
   try {
     const currentRoute = request.nextUrl.pathname;
 
@@ -35,7 +38,7 @@ export default async function authMiddleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/", request.nextUrl));
     }
     
-    return NextResponse.next();
+    return NextResponse.next({ headers });
   } catch (error) {
     console.error("Error in authMiddleware:", error);
   }

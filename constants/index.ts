@@ -21,6 +21,21 @@ export const navbarItems = [
   }
 ];
 
+export const adminNavbarItems = [
+  {
+    name: "Табло",
+    href: "/dashboard"
+  },
+  {
+    name: "Услуги",
+    href: "/dashboard/services"
+  },
+  {
+    name: "Настройки",
+    href: "/dashboard/settings"
+  },
+];
+
 export const servicesItems = [
   {
     title: "Претапициране на столове",

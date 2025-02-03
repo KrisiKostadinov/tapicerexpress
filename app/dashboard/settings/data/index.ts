@@ -3,14 +3,15 @@
 import { prisma } from "@/db/prisma";
 import { FormSchemaProps } from "@/app/dashboard/settings/components/company-data";
 
-export const updateSettings = async (data: FormSchemaProps) => {
-  const updatedSettings = await prisma.companyData.upsert({
+export const updateCompany = async (data: FormSchemaProps) => {
+  await prisma.companyData.upsert({
     where: { id: "singleton-company-data" },
     update: {
       websiteTitle: data.websiteTitle,
       phoneNumber: data.phoneNumber,
       emailAddress: data.emailAddress,
       physicalAddress: data.physicalAddress,
+      city: data.city,
     },
     create: {
       id: "singleton-company-data",
@@ -18,10 +19,9 @@ export const updateSettings = async (data: FormSchemaProps) => {
       phoneNumber: data.phoneNumber,
       emailAddress: data.emailAddress,
       physicalAddress: data.physicalAddress,
+      city: data.city,
     },
   });
-
-  return { message: "Промените са направени", updatedSettings };
 };
 
 export const getSettings = async () => {
